@@ -1,0 +1,17 @@
+class Header
+{
+	gameType = Sandbox;
+	minPlayers = 1;
+	maxPlayers = 1;
+}; 
+
+onLoadName = Grimes' Building Occupation Script;
+author = KC Grimes;
+onLoadMission = A simple script allowing for easy, automated, and random occupation of an area by spawned AI.;
+
+disabledAI = 1;
+
+respawn = "INSTANT";
+respawnDialog = false;
+
+enableDebugConsole = true;
