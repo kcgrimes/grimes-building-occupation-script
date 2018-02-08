@@ -16,19 +16,19 @@ _trigger = _this select 0;
 _sside = _this select 1;
 switch (_sside) do
 {
-	case WEST: 
+	case west: 
 	{
 		_sclasses = ["B_Soldier_F"];
 	};
-	case EAST:
+	case east:
 	{
 		_sclasses = ["O_Soldier_F"];
 	};
-	case GUER:
+	case resistance:
 	{
 		_sclasses = ["I_Soldier_F"];
 	};
-	case CIV:
+	case civilian:
 	{
 		_sclasses = ["C_Man_1"];
 	};
