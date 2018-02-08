@@ -22,6 +22,8 @@ BIS Forums Topic: https://forums.bohemia.net/forums/topic/164755-grimes-building
 At this time, there is no “installer” for the script, and it is instead a simple series of actions and file moves.  
 
 1. Obtain the script files
+	1. github: https://github.com/kcgrimes/grimes-building-occupation-script
+	1. Armaholic: http://www.armaholic.com/page.php?id=25268
 2. Simply copy the file "G_Occupation.sqf" into your mission directory
 3. Create a trigger in the area of where you want buildings occupied
 3. Execute by putting this line of code in the trigger's On Activation field:
@@ -78,6 +80,19 @@ This means the AI will be EAST, they will spawn in buildings within 200m from th
 and 3, they will be grouped per building, the number of groups is not directly limited, buildings will be selected randomly, and debug is enabled.
 
 I suggest that the editor-placed trigger has no radius (as it is irrelevant to this script), and condition set to true (therefore it activates on mission start).
+
+Notes/Tips:
+* I understand this is a wall of text, but I assure you it is the most complicated part of this SIMPLE script!
+* Due to the nature of this script, the larger the desired numbers and spawn radius, the more time it takes to complete its process, and the more laggy the server will be during the process. This can be mediated by reducing the numbers or having multiple triggers executing this script with smaller radii, thus allowing multiple spawns to occur in parallel.
+* The radius/dimensions of the trigger in the editor have NO EFFECT on this script, other than that trigger's activation. The radius that this script references is defined in the parameters as listed above. 
+* It is recommended to run this script at mission start so that any potential lag does not occur during the mission. However, it can be done at any time, as long as it is via trigger with the above parameters. 
+* You can add or remove classnames in the _sclasses arrays. The script is already setup to select 1 at random per individual spawn.
+* To use the debug mode, which tells you exactly what is spawning and where, simply add a true at the end of the parameters, as mentioned above. I strongly, strongly recommend this for all applications in order to ensure a smooth and working execution.
+* Unfortunately, ArmA is limited to 144 groups per side. Be sure to read about this further in the installation instructions. To see if you've exceeded the group limit, look in the far southwest corner (bottom left) of the map. If there are Red markers there, you have exceeded the group limit. As well, you will see it indicated in the debug texts.
+* On that note, the ONLY limiter to this script is the available buildings, the 144 group limit, and your values. 
+* AI DO maintain their spawned position if spawned in a group, until entering combat.
+* This script contains various "checks" in order to ensure your success!
+* All of my recommended limitations can be experimented with, of course. Make your mission as good as it can be!
 
 ## Documentation
 
