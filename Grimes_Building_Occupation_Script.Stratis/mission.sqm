@@ -1,20 +1,77 @@
-version=12;
-class Mission
+version=53;
+class EditorData
 {
-	addOns[]=
+	moveGridStep=1;
+	angleGridStep=0.2617994;
+	scaleGridStep=1;
+	autoGroupingDist=10;
+	toggles=1;
+	class ItemIDProvider
 	{
-		"a3_map_stratis",
-		"A3_Characters_F_BLUFOR"
+		nextID=514;
 	};
-	addOnsAuto[]=
+	class MarkerIDProvider
 	{
-		"A3_Characters_F_BLUFOR",
-		"a3_map_stratis"
+		nextID=40;
 	};
-	randomSeed=3267066;
+	class Camera
+	{
+		pos[]={3641.0369,1006.7374,5582.5459};
+		dir[]={-0.35304347,-0.82084852,0.44900298};
+		up[]={-0.50736475,0.57114273,0.64526868};
+		aside[]={0.78611368,1.0641525e-006,0.6181066};
+	};
+};
+binarizationWanted=0;
+addons[]=
+{
+	"A3_Characters_F"
+};
+class AddonsMetaData
+{
+	class List
+	{
+		items=1;
+		class Item0
+		{
+			className="A3_Characters_F";
+			name="Arma 3 Alpha - Characters and Clothing";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+	};
+};
+randomSeed=3792573;
+class ScenarioData
+{
+	author="KC Grimes";
+};
+class Intro
+{
 	class Intel
 	{
-		briefingName="Grimes' Building Occupation Script";
+		timeOfChanges=1800.0002;
+		startWeather=0.30000001;
+		startWind=0.1;
+		startWaves=0.1;
+		forecastWeather=0.30000001;
+		forecastWind=0.1;
+		forecastWaves=0.1;
+		forecastLightnings=0.1;
+		year=2035;
+		month=7;
+		day=6;
+		hour=12;
+		minute=0;
+		startFogDecay=0.013;
+		forecastFogDecay=0.013;
+	};
+};
+class Mission
+{
+	class Intel
+	{
+		briefingName="Grimes Building Occupation Script";
 		overviewText="A simple script allowing for easy, automated, and random occupation of an area by spawned AI.";
 		startWeather=0.29999998;
 		startWind=0.099999994;
@@ -31,59 +88,60 @@ class Mission
 		startFogDecay=0.013;
 		forecastFogDecay=0.013;
 	};
-	class Groups
+	class Entities
 	{
-		items=1;
+		items=2;
 		class Item0
 		{
-			side="WEST";
-			class Vehicles
+			dataType="Trigger";
+			position[]={2952.261,3.3499999,6051.9102};
+			class Attributes
+			{
+				condition="true";
+				onActivation="null = [thisTrigger,east,200,0,6,2,3,1,true] execVM ""G_Occupation.sqf"";  ";
+				sizeA=0;
+				sizeB=0;
+				interuptable=1;
+			};
+			id=511;
+			type="EmptyDetector";
+		};
+		class Item1
+		{
+			dataType="Group";
+			side="West";
+			class Entities
 			{
 				items=1;
 				class Item0
 				{
-					position[]={2939.7944,28.260202,6219.7139};
-					azimut=84.344002;
-					special="NONE";
-					id=0;
-					side="WEST";
-					vehicle="B_Soldier_F";
-					player="PLAYER COMMANDER";
-					leader=1;
-					skill=0.60000002;
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={2939.7944,28.261641,6219.7637};
+						angles[]={0.0024897563,1.4720805,0.0024897563};
+					};
+					side="West";
+					flags=6;
+					class Attributes
+					{
+						skill=0.60000002;
+						isPlayer=1;
+						isPlayable=1;
+					};
+					id=513;
+					type="B_Soldier_F";
 				};
 			};
-		};
-	};
-	class Sensors
-	{
-		items=1;
-		class Item0
-		{
-			position[]={2952.2615,3.3499999,6051.9102};
-			a=0;
-			b=0;
-			interruptable=1;
-			age="UNKNOWN";
-			expCond="true";
-			expActiv="nul = [thisTrigger,EAST,200,0,6,2,3,1,true] execVM ""G_Occupation.sqf"";  ";
-			class Effects
+			class Attributes
 			{
 			};
+			id=512;
 		};
 	};
 };
-class Intro
+class OutroLoose
 {
-	addOns[]=
-	{
-		"a3_map_stratis"
-	};
-	addOnsAuto[]=
-	{
-		"a3_map_stratis"
-	};
-	randomSeed=13915453;
 	class Intel
 	{
 		timeOfChanges=1800.0002;
@@ -105,45 +163,6 @@ class Intro
 };
 class OutroWin
 {
-	addOns[]=
-	{
-		"a3_map_stratis"
-	};
-	addOnsAuto[]=
-	{
-		"a3_map_stratis"
-	};
-	randomSeed=8581718;
-	class Intel
-	{
-		timeOfChanges=1800.0002;
-		startWeather=0.30000001;
-		startWind=0.1;
-		startWaves=0.1;
-		forecastWeather=0.30000001;
-		forecastWind=0.1;
-		forecastWaves=0.1;
-		forecastLightnings=0.1;
-		year=2035;
-		month=7;
-		day=6;
-		hour=12;
-		minute=0;
-		startFogDecay=0.013;
-		forecastFogDecay=0.013;
-	};
-};
-class OutroLoose
-{
-	addOns[]=
-	{
-		"a3_map_stratis"
-	};
-	addOnsAuto[]=
-	{
-		"a3_map_stratis"
-	};
-	randomSeed=2160923;
 	class Intel
 	{
 		timeOfChanges=1800.0002;
