@@ -29,7 +29,7 @@ At this time, there is no “installer” for the script, and it is instead a si
 3. Execute by putting this line of code in the trigger's On Activation field:
 
 ```
-null = [thisTrigger,EAST,200,1,3,2,-1,0,true] execVM "G_Occupation.sqf";  
+null = [thisTrigger,east,200,1,3,2,-1,0,true] execVM "G_Occupation.sqf";  
 ```
 
 Parameters:
@@ -39,7 +39,7 @@ null = [thisTrigger,side,radius,spawntype,maxAIperbuilding,groupdividing,maxgrou
 thisTrigger
 
 (select 1) - side is the side that you want the spawned AI to be on.
-WEST, EAST, GUER, CIV
+west, east, resistance, civilian
 
 (select 2) - radius is the radius of the "subject area" around the trigger, where all buildings inside it are "subject". No relation to radius of editor-placed trigger.
 Integer greater than 0
@@ -75,8 +75,8 @@ NOTE: Only has effect when Select 3/SpawnType is 0. With 1 and -1, the spawn cou
 (select 8) - debug is true or false (optional (can be left non-existent)), where true provides text feedback about what the script is resulting in.
 
 Example Parameters:
-null = [thisTrigger,EAST,200,1,3,2,-1,0,true] execVM "G_Occupation.sqf";  
-This means the AI will be EAST, they will spawn in buildings within 200m from the trigger executing the script, they will spawn at a random number per building between 0
+null = [thisTrigger,east,200,1,3,2,-1,0,true] execVM "G_Occupation.sqf";  
+This means the AI will be east, they will spawn in buildings within 200m from the trigger executing the script, they will spawn at a random number per building between 0
 and 3, they will be grouped per building, the number of groups is not directly limited, buildings will be selected randomly, and debug is enabled.
 
 I suggest that the editor-placed trigger has no radius (as it is irrelevant to this script), and condition set to true (therefore it activates on mission start).
