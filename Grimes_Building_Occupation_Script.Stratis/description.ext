@@ -5,7 +5,7 @@ class Header
 	maxPlayers = 1;
 }; 
 
-onLoadName = Grimes' Building Occupation Script;
+onLoadName = Grimes Building Occupation Script;
 author = KC Grimes;
 onLoadMission = A simple script allowing for easy, automated, and random occupation of an area by spawned AI.;
 
