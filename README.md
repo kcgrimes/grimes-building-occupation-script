@@ -32,67 +32,69 @@ At this time, there is no “installer” for the script, and it is instead a si
 null = [thisTrigger,east,200,1,3,2,-1,0,true] execVM "G_Occupation.sqf";  
 ```
 
+4. Modify execution parameters as desired using the following rules:
+
 Parameters:
-null = [thisTrigger,side,radius,spawntype,maxAIperbuilding,groupdividing,maxgroups,buildingorder,debug(optional)] execVM "G_Occupation.sqf";
+null = [thisTrigger, side, radius, spawnType, maxToSpawn, groupOption, maxGroups, buildingOrder, debug(optional)] execVM "G_Occupation.sqf";
 
-(select 0) - thisTrigger is not a name but is a command returning the trigger. It must always be in the select 0 slot.
-thisTrigger
+(select 0) - thisTrigger - A command (not a name) returning the trigger. It must always be in the select 0 slot.
+Value: thisTrigger
 
-(select 1) - side is the side that you want the spawned AI to be on.
-west, east, resistance, civilian
+(select 1) - side - The side that you want the spawned AI to be on.
+Value: west, east, resistance, civilian
 
-(select 2) - radius is the radius of the "subject area" around the trigger, where all buildings inside it are "subject". No relation to radius of editor-placed trigger.
-Integer greater than 0
+(select 2) - radius - The radius of the "subject area" around the trigger, where all buildings inside it are "subject buildings". No relation to the radius of the editor-placed trigger.
+Value: Integer greater than 0
 
-(select 3) - spawntype
-NOTE: When this is used (value is > 0 or < 0, maxAIperbuilding represents the max AI allowable to spawn and groupdividing can only be 1 or 3+! (Meaning, number per building not limited, and only 1 or set amount of AIin each group)
-0 - AI spawn by a certain number per building depending on maxAIperbuilding and the available positions
-1 - AI spawn per building depending on a random number between 0 and maxAIperbuilding, limited as well by available positions
-2 - Fixed number of AI spawning at complete random at positions inside the radius (boundary number set by select 4, maxAIperbuilding)
-3 - Random number of AI spawning at complete random at positions inside the radius (boundary number set by select 4, maxAIperbuilding)
+(select 3) - spawnType - The method by which AI will spawn.
+Value:
+NOTE: For spawnType values of 0 or 1, maxToSpawn represents the max AI allowed to spawn per building (as opposed to the area) and groupOption can be any setting.
+0 - AI spawn by a certain number per building depending on maxToSpawn and the available positions
+1 - AI spawn per building depending on a random number between 0 and maxToSpawn, limited as well by available positions
+NOTE: For spawnType values of 2 or 3, maxToSpawn represents the max AI allowed to spawn in the area (as opposed to building) and groupOption can only be 1 or 3+ (number per building can only be limited by available positions).
+2 - Fixed number of AI spawning at random at positions inside the radius (boundary number set by select 4, maxToSpawn)
+3 - Random number of AI spawning at random at positions inside the radius (boundary number set by select 4, maxToSpawn)
 
-(select 4) - maxAIperbuilding is merely another limiter. It can still be limited if the max positions in a building is less than it. If spawntype is on (< 0 >) then represents the max number of AI that could be/will be spawned.
+(select 4) - maxToSpawn - Used to limit the maximum number of AI to spawn per building or in the subject area, depending on the value of spawnType (described in spawnType section).
+Value: Integer greater than 0
 
-(select 5) - groupdividing determines the number of AI per AI "group". Due to game limitations, there can be only 144 groups per
-side. Because of this, in the event that this script exceeds 144 groups minus the number of AI groups you have already placed, the 
-remainder of spawns will not occur due to being invalid. This won't cause game lag/leaks, just the lack of the remainder of spawns. To
-mediate this, I have setup 3 options that the mission maker must choose from in order to most effectively create their mission. These 
-numbers below take the place of "groupdividing" in the parameters.
-1 - When spawned, AI are in their own group. This generally keeps them exactly where they spawned until in combat. I recommend this if you won't have an issue with the 144 group limiter.
-2 - When spawned, AI are grouped per building. This is sort of the halfway point, and often results in some AI exiting buildings.
-3+ - When spawned, AI are grouped in groups the size of this variable. For instance, if you put 10, the AI will spawn and be placed in groups of 10. This WILL cause unplayable lag if you exceed excessive numbers (ie, dozens). Will result in AI exiting buildings.
+(select 5) - groupOption - The number of AI per AI "group". Due to game limitations, there can be only 144 groups per side. Because of this, in the event that this script exceeds 144 groups minus the number of AI groups you have already placed, the script will exit and the remaining spawns will not occur. 
+Value:
+1 - When spawned, AI are in their own group. 
+2 - When spawned, AI are grouped per building. When spawnType is 2 or 3, AI are in their own group. 
+3+ - When spawned, AI are grouped in groups the size of this variable. For instance, if you use 10, the AI will spawn and be placed in groups of 10, possibly between multiple buildings.
 
-(select 6) - maxgroups determines the maximum number of groups that the script will spawn. 
-NOTE: Groups are divided up depending on the previous value.
-NOTE: Only has effect when Select 3/SpawnType is 0. With 1 and -1, the spawn count is already limited by other means.
--1 (value of -1) - This value will not limit groups, groups will be limited by the spawn system instead.
->0 (any value over 0) - The maximum number of groups that will be created/spawned. Upon achieving this number, the script exits.
+(select 6) - maxGroups - The maximum number of groups that the script will spawn before exiting. 
+Value:
+NOTE: Groups are divided up depending on the groupOption value.
+-1 (value of -1) - Unlimited groups for the script, however groups will still be limited by the spawn system (144 per side).
+>0 (any value over 0) - The maximum number of groups that will be created. Upon achieving this number, the script exits.
 
-(select 7) - buildingorder determines whether or not the script will work from the center of the radius out, or at random.
+(select 7) - buildingOrder - Determines whether or not the script will work from the center of the radius out, or at random.
+Value:
 0 - The script will proceed from the buildings nearest the center of the radius and expand outward
-1 - The script will proceed from random building to random building within the radius
+1 - The script will proceed from building to building at random within the radius
 
-(select 8) - debug is true or false (optional (can be left non-existent)), where true provides text feedback about what the script is resulting in.
+(select 8) - debug - Debug is true or false (optional; can be left non-existent).
+Value:
+true - Provides text feedback via chat about what the script is resulting in.
+false - No debug; for production.
 
 Example Parameters:
-null = [thisTrigger,east,200,1,3,2,-1,0,true] execVM "G_Occupation.sqf";  
-This means the AI will be east, they will spawn in buildings within 200m from the trigger executing the script, they will spawn at a random number per building between 0
-and 3, they will be grouped per building, the number of groups is not directly limited, buildings will be selected randomly, and debug is enabled.
-
-I suggest that the editor-placed trigger has no radius (as it is irrelevant to this script), and condition set to true (therefore it activates on mission start).
+null = [thisTrigger,east,200,1,3,2,-1,1,true] execVM "G_Occupation.sqf";  
+This means the AI will be east, they will spawn in buildings within 200m from the trigger executing the script, they will spawn at a random number per building between 0 and 3, they will be grouped per building, the number of groups is not directly limited, buildings will be selected randomly, and debug is enabled.
 
 Notes/Tips:
-* I understand this is a wall of text, but I assure you it is the most complicated part of this SIMPLE script!
 * Due to the nature of this script, the larger the desired numbers and spawn radius, the more time it takes to complete its process, and the more laggy the server will be during the process. This can be mediated by reducing the numbers or having multiple triggers executing this script with smaller radii, thus allowing multiple spawns to occur in parallel.
-* The radius/dimensions of the trigger in the editor have NO EFFECT on this script, other than that trigger's activation. The radius that this script references is defined in the parameters as listed above. 
+* The radius/dimensions of the trigger in the editor have no effect on this script, other than that trigger's activation. The radius that this script references is defined in the parameters as listed above. 
 * It is recommended to run this script at mission start so that any potential lag does not occur during the mission. However, it can be done at any time, as long as it is via trigger with the above parameters. 
 * You can add or remove classnames in the _sclasses arrays. The script is already setup to select 1 at random per individual spawn.
-* To use the debug mode, which tells you exactly what is spawning and where, simply add a true at the end of the parameters, as mentioned above. I strongly, strongly recommend this for all applications in order to ensure a smooth and working execution.
-* Unfortunately, ArmA is limited to 144 groups per side. Be sure to read about this further in the installation instructions. To see if you've exceeded the group limit, look in the far southwest corner (bottom left) of the map. If there are Red markers there, you have exceeded the group limit. As well, you will see it indicated in the debug texts.
-* On that note, the ONLY limiter to this script is the available buildings, the 144 group limit, and your values. 
-* AI DO maintain their spawned position if spawned in a group, until entering combat.
+* To use the debug mode, which tells you exactly what is spawning and where, simply add a true at the end of the parameters, as mentioned above. At least one run with debug enabled is recommended in order to ensure a smooth and working production version.
+* Unfortunately, ArmA is limited to 144 groups per side. Be sure to read about this further in the installation instructions. Group numbers are provided in the debug texts.
+* On that note, the limiters to this script is the available buildings, the 144 group limit, and your values. 
+* AI will maintain their spawned position if spawned in a group, until entering combat.
 * This script contains various "checks" in order to ensure your success!
-* All of my recommended limitations can be experimented with, of course. Make your mission as good as it can be!
+* All of the recommended limitations can be experimented with, of course. Make your mission as good as it can be!
 
 ## Documentation
 
