@@ -1,7 +1,7 @@
 /*
 Author: KC Grimes
 Script: Grimes Building Occupation Script
-Version: V1.1
+Version: V1.2
 */
 
 //Script should only run on the server
