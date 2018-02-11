@@ -26,13 +26,13 @@ At this time, there is no “installer” for the script, and it is instead a si
 	1. Armaholic: http://www.armaholic.com/page.php?id=25268
 2. Simply copy the file "G_Occupation.sqf" into your mission directory
 3. Create a trigger in the area of where you want buildings occupied
-3. Execute by putting this line of code in the trigger's On Activation field:
+4. Execute by putting this line of code in the trigger's On Activation field:
 
 ```
 null = [thisTrigger,east,200,1,3,2,-1,0,true] execVM "G_Occupation.sqf";  
 ```
 
-4. Modify execution parameters as desired using the following rules:
+5. Modify execution parameters as desired using the following rules:
 
 Parameters:
 null = [thisTrigger, side, radius, spawnType, maxToSpawn, groupOption, maxGroups, buildingOrder, debug(optional)] execVM "G_Occupation.sqf";
