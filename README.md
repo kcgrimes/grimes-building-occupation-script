@@ -58,7 +58,7 @@ NOTE: For spawnType values of 2 or 3, maxToSpawn represents the max AI allowed t
 (select 4) - maxToSpawn - Used to limit the maximum number of AI to spawn per building or in the subject area, depending on the value of spawnType (described in spawnType section).
 Value: Integer greater than 0
 
-(select 5) - groupOption - The number of AI per AI "group". Due to game limitations, there can be only 144 groups per side. Because of this, in the event that this script exceeds 144 groups minus the number of AI groups you have already placed, the script will exit and the remaining spawns will not occur. 
+(select 5) - groupOption - The number of AI per AI "group". Due to game limitations, there can be only 288 groups per side. Because of this, in the event that this script exceeds 288 groups minus the number of AI groups you have already placed, the script will exit and the remaining spawns will not occur. 
 Value:
 1 - When spawned, AI are in their own group. 
 2 - When spawned, AI are grouped per building. When spawnType is 2 or 3, AI are in their own group. 
@@ -67,7 +67,7 @@ Value:
 (select 6) - maxGroups - The maximum number of groups that the script will spawn before exiting. 
 Value:
 NOTE: Groups are divided up depending on the groupOption value.
--1 (value of -1) - Unlimited groups for the script, however groups will still be limited by the spawn system (144 per side).
+-1 (value of -1) - Unlimited groups for the script, however groups will still be limited by the spawn system (288 per side).
 >0 (any value over 0) - The maximum number of groups that will be created. Upon achieving this number, the script exits.
 
 (select 7) - buildingOrder - Determines whether or not the script will work from the center of the radius out, or at random.
@@ -90,8 +90,8 @@ Notes/Tips:
 * It is recommended to run this script at mission start so that any potential lag does not occur during the mission. However, it can be done at any time, as long as it is via trigger with the above parameters. 
 * You can add or remove classnames in the _sclasses arrays. The script is already setup to select 1 at random per individual spawn.
 * To use the debug mode, which tells you exactly what is spawning and where, simply add a true at the end of the parameters, as mentioned above. At least one run with debug enabled is recommended in order to ensure a smooth and working production version.
-* Unfortunately, ArmA is limited to 144 groups per side. Be sure to read about this further in the installation instructions. Group numbers are provided in the debug texts.
-* On that note, the limiters to this script is the available buildings, the 144 group limit, and your values. 
+* Unfortunately, ArmA is limited to 288 groups per side. Be sure to read about this further in the installation instructions. Group numbers are provided in the debug texts.
+* On that note, the limiters to this script is the available buildings, the 288 group limit, and your values. 
 * AI will maintain their spawned position if spawned in a group, until entering combat.
 * This script contains various "checks" in order to ensure your success!
 * All of the recommended limitations can be experimented with, of course. Make your mission as good as it can be!

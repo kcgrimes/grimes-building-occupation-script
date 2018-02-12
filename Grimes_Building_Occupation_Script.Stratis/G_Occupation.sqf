@@ -46,10 +46,10 @@ if (_groupOption >= 3) then {
 	//Create variable to track "script group" size
 	_groupSize = 0;
 };
-//Limit max number of groups to engine max of 144 per side
-_maxNumGroups = ((_this select 6) min 144);
+//Limit max number of groups to engine max of 288 per side
+_maxNumGroups = ((_this select 6) min 288);
 if (_maxNumGroups == -1) then {
-	_maxNumGroups = 144;
+	_maxNumGroups = 288;
 };
 //Create variable for counting groups
 _numGroups = 0;
@@ -135,8 +135,8 @@ G_fnc_checkNumGroups = {
 			_realNumGroups = _realNumGroups + 1;
 		};
 	} forEach allGroups;
-	//Check if the number of groups is maxed out by definition or engine max of 144
-	if ((_numGroups >= _maxNumGroups) || (_realNumGroups >= 144)) then {
+	//Check if the number of groups is maxed out by definition or engine max of 288
+	if ((_numGroups >= _maxNumGroups) || (_realNumGroups >= 288)) then {
 		//Max exceeded, return true
 		_maxGroupsAchieved = true;
 	};
