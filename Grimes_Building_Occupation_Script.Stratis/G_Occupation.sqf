@@ -8,7 +8,7 @@ Version: V1.2
 if (!isServer) exitWith {};
 
 //Make sure all required parameters are defined
-if ((count _this) < 8) exitWith {player sideChat "G_Occupation - All 8 initial parameters must be filled out in the trigger!"};
+if ((count _this) < 8) exitWith {systemChat "G_Occupation - All 8 initial parameters must be filled out in the trigger!"};
 
 //Wait for mission init
 sleep 1;
@@ -59,11 +59,11 @@ private ["_unitCount", "_buildingCount", "_timer"];
 //Check if optional debug param was defined
 if (isNil "_debug") then {
 	//Debug was not defined
-	//bug - An undefined variable comes here, and a bad value is converted to false without sideChat message
+	//bug - An undefined variable comes here, and a bad value is converted to false without debug message
 	_debug = false;
 };
 //Check if debug was incorrectly defined, and exit if so
-if (typeName _debug != "BOOL") exitWith {player sideChat "G_Occupation - Select 8 must be a boolean or not defined!"};
+if (typeName _debug != "BOOL") exitWith {systemChat "G_Occupation - Select 8 must be a boolean or not defined!"};
 
 if (_debug) then {
 	//Debug was defined as true
@@ -71,19 +71,19 @@ if (_debug) then {
 	_unitCount = 0;
 	_buildingCount = 0;
 	//Initialize the debug timer
-	player sideChat "Debug: Beginning spawn via G_Occupation! Counts and Timer starting!";
+	systemChat "Debug: Beginning spawn via G_Occupation! Counts and Timer starting!";
 	_timer = time;
 };
 
 //Check for values within required limits, and exit with an error message if not
-if (typeName _trigger != "OBJECT") exitWith {player sideChat "G_Occupation - Select 0 must be thisTrigger!"};
-if (typeName _side != "SIDE") exitWith {player sideChat "G_Occupation - Select 1 must be a side!"};
-if ((typeName _triggerRadius != "SCALAR") || (_triggerRadius <= 0)) exitWith {player sideChat "G_Occupation - Select 2 must be a positive number greater than 0!"};
-if ((typeName _spawnType != "SCALAR") || !(_spawnType in [0,1,2,3])) exitWith {player sideChat "G_Occupation - Select 3 must be a number!"};
-if ((typeName _maxToSpawn != "SCALAR") || (_maxToSpawn <= 0)) exitWith {player sideChat "G_Occupation - Select 4 must be a positive number greater than 0!"};
-if ((typeName _groupOption != "SCALAR") || (_groupOption <= 0)) exitWith {player sideChat "G_Occupation - Select 5 must be a positive number greater than 0!"};
-if ((typeName _maxNumGroups != "SCALAR") || (_maxNumGroups == 0)) exitWith {player sideChat "G_Occupation - Select 6 must be a number that is not 0!"};
-if ((typeName _buildingOrder != "SCALAR") || !(_buildingOrder in [0,1])) exitWith {player sideChat "G_Occupation - Select 7 must be a number!"};
+if (typeName _trigger != "OBJECT") exitWith {systemChat "G_Occupation - Select 0 must be thisTrigger!"};
+if (typeName _side != "SIDE") exitWith {systemChat "G_Occupation - Select 1 must be a side!"};
+if ((typeName _triggerRadius != "SCALAR") || (_triggerRadius <= 0)) exitWith {systemChat "G_Occupation - Select 2 must be a positive number greater than 0!"};
+if ((typeName _spawnType != "SCALAR") || !(_spawnType in [0,1,2,3])) exitWith {systemChat "G_Occupation - Select 3 must be a number!"};
+if ((typeName _maxToSpawn != "SCALAR") || (_maxToSpawn <= 0)) exitWith {systemChat "G_Occupation - Select 4 must be a positive number greater than 0!"};
+if ((typeName _groupOption != "SCALAR") || (_groupOption <= 0)) exitWith {systemChat "G_Occupation - Select 5 must be a positive number greater than 0!"};
+if ((typeName _maxNumGroups != "SCALAR") || (_maxNumGroups == 0)) exitWith {systemChat "G_Occupation - Select 6 must be a number that is not 0!"};
+if ((typeName _buildingOrder != "SCALAR") || !(_buildingOrder in [0,1])) exitWith {systemChat "G_Occupation - Select 7 must be a number!"};
 
 //Define position of the trigger
 _triggerPos = getPos _trigger;
@@ -365,14 +365,14 @@ else
 if (_debug) then {
 	//Output results of script
 	//Output final time and number of subject buildings
-	player sideChat format ["Time: %1 seconds, Buildings: %2", (time - _timer), _buildingCount];
+	systemChat format ["Time: %1 seconds, Buildings: %2", (time - _timer), _buildingCount];
 	//Define max number of possible AI spawns based on spawnType setting
 	_max = (_buildingCount * _maxToSpawn);
 	if (_spawnType in [2,3]) then {
 		_max = _maxToSpawn;
 	};
 	//Output minimum and maximum number of possible groups and AI spawns, along with the actual numbers
-	player sideChat format ["Min: 0, Max: %1, Actual: %2, Num. Groups: %3, Max. Groups: %4", _max, _unitCount, _numGroups, _maxNumGroups];
+	systemChat format ["Min: 0, Max: %1, Actual: %2, Num. Groups: %3, Max. Groups: %4", _max, _unitCount, _numGroups, _maxNumGroups];
 	//Output map viewing instructions
-	player sideChat "On your map, Black markers indicate subject buildings and Red markers indicate individually spawned AI.";
+	systemChat "On your map, Black markers indicate subject buildings and Red markers indicate individually spawned AI.";
 };
