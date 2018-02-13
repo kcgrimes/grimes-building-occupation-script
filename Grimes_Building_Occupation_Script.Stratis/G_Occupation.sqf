@@ -168,7 +168,7 @@ if (_spawnType in [0,1]) then {
 			if (_spawnType == 1) then {
 				//_spawnType 1
 				//Select the smaller out of a random number between 0 and available positions, and the defined max
-				_unitsToSpawn = ((round(random(_posCount))) min _maxToSpawn);
+				_unitsToSpawn = ((floor(random(_posCount) + 1)) min _maxToSpawn);
 			};
 			
 			//Check if 1 or more units are to spawn in subject building
@@ -288,7 +288,7 @@ else
 	if (_spawnType == 3) then {
 		//_spawnType 3
 		//Select a random number between 0 and the defined maximum
-		_unitsToSpawn = round(random(_maxToSpawn));
+		_unitsToSpawn = floor(random(_maxToSpawn + 1));
 	};
 	
 	//Check if 1 or more units are to spawn in subject area
