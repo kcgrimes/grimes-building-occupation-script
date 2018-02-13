@@ -10,9 +10,6 @@ if (!isServer) exitWith {};
 //Make sure all required parameters are defined
 if ((count _this) < 8) exitWith {systemChat "G_Occupation - All 8 initial parameters must be filled out in the trigger!"};
 
-//Wait for mission init
-sleep 1;
-
 //Define local variables from execution parameters
 _trigger = _this select 0;
 _side = _this select 1;
