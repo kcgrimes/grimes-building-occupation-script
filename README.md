@@ -22,9 +22,9 @@ BI Forums Topic: https://forums.bohemia.net/forums/topic/164755-grimes-building-
 At this time, there is no “installer” for the script, and it is instead a simple series of actions and file moves.  
 
 1. Obtain the script files
-	a. Armaholic: http://www.armaholic.com/page.php?id=25268
-	a. github: https://github.com/kcgrimes/grimes-building-occupation-script
-	a. Steam Workshop: http://steamcommunity.com/sharedfiles/filedetails/?id=1313225489
+	1. Armaholic: http://www.armaholic.com/page.php?id=25268
+	1. github: https://github.com/kcgrimes/grimes-building-occupation-script
+	1. Steam Workshop: http://steamcommunity.com/sharedfiles/filedetails/?id=1313225489
 2. Simply copy the file "G_Occupation.sqf" into your mission directory
 3. Create a trigger in the area of where you want buildings occupied
 4. Execute by putting this line of code in the trigger's On Activation field:
